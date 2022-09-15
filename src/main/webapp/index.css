@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Benne&family=Luxurious+Roman&family=Mina&display=swap');
+
+* {
+	scroll-behavior: smooth;
+	margin: 0px;
+	padding: 0px;
+	background-image: url("https://coolbackgrounds.io/images/backgrounds/index/compute-ea4c57a4.png");
+	font-family: 'Luxurious Roman', cursive;
+	color: white;
+}
+
+h1 {
+	width: 100vw;
+	background-color: rgba(0, 0, 0, 0.5);
+	margin: auto;
+	width: 50%;
+	text-align: center;
+	background-color: rgba(0, 0, 0, 0.4);
+	color: antiquewhite;
+}
+
+.main {
+	width: 600px;
+	margin: 100px auto;
+	text-align: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+
+}
+
+.box {
+
+	width: 200px;
+
+}
+
+.box img {
+	width: 100%;
+
+
+}
+
+.details {
+	width: 600px;
+	text-align: center;
+	margin: 100px auto;
+	padding: 5px;
+	border: 2px solid white;
+	border-radius: 5px;
+	float: none;
+
+}
+
+.details input,
+button {
+	margin: 10px auto;
+	padding: 5px;
+	display: block;
+
+
+}
+
+button {
+	cursor: pointer;
+}
+
+.professor-register-details {
+	display: none;
+}
+
+.student-register-details {
+	display: none;
+}
+
+input[type="radio"] {
+	cursor: pointer;
+}
+
+input[type="text"],
+input[type="password"] {
+	padding: 10px;
+	font-size: larger;
+	font-weight: 400;
+	outline: none;
+
+}

@@ -1,0 +1,39 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+.nav a {
+	display: block;
+	width: 50%;
+	background-color: #4CAF50;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+select 
+{
+	
+	display: block;
+	width: 50%;
+	
+}
+option a
+{
+	color:red;
+}
+a:hover {
+	background-color: black;
+
+}
+
+.nav {
+
+	display: flex;
+	flex-direction: row;
+}

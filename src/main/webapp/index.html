@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+<link rel="stylesheet" href="index.css" />
+</head>
+<body>
+	<h1>Semester Calendar Generation</h1>
+	<div class="main">
+		<figure class=" box">
+			<img
+				src="https://static8.depositphotos.com/1008303/880/i/950/depositphotos_8803246-stock-photo-asian-college-student.jpg"
+				width="200px">
+			<figcaption>
+				<label for="Student_radio"> Student </label> <input type="radio"
+					id="Student_radio" name="radio" />
+			</figcaption>
+		</figure>
+		<figure class="box">
+			<img
+				src="https://us.123rf.com/450wm/lightfieldstudios/lightfieldstudios1903/lightfieldstudios190306033/118631872-beautiful-female-teacher-in-formal-wear-writing-in-notebook-and-looking-at-camera-in-classroom.jpg?ver=6" />
+			<label for="Professoer_radio"> Professor </label>
+			<input type="radio" id="professoer_radio" name="radio" />
+		</figure>
+	</div>
+	<div class="details student-register-details">
+		<form action="student.jsp" method="post">
+			<h1>Student details</h1>
+			<input type="text" name="student_id" placeholder="Enter your id"
+				required> <input type="password" name="student_password"
+				placeholder="Enter your password" required>
+			<button type="submit">Submit</button>
+		</form>
+	</div>
+	<div class="details professor-register-details">
+		<form action="professor.jsp" method="post">
+			<h1>Professor details</h1>
+			<input type="text" name="professor_id" placeholder="Enter your id"
+				required> <input type="password" name="professor_password"
+				placeholder="Enter your password" required>
+			<button type="submit">Submit</button>
+		</form>
+	</div>
+	<script type="text/javascript" src="index.js"></script>
+</body>
+</html>

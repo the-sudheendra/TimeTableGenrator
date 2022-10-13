@@ -1,0 +1,277 @@
+use college;
+create database college;
+use college;
+show tables;
+SET SQL_SAFE_UPDATES = 0;
+
+
+----------------------------------- Students---
+
+create table students(id int primary key,f_name varchar(20),l_name varchar(20),password varchar(20));
+insert into students values(141,"Murugula","Sudheendra","Kanna@123456");
+insert into students values(131,"Murugula","Raghavendra","Raghu@540");
+insert into students values(101,"Akella","Raghavendra","akella");
+insert into students values(100,"kanna","chinna","kanna");
+insert into students values(27,"Bomma","Vijay","bomma");
+insert into students values(165,"N","Sandeep","sandy");
+insert into students values(254,"Vadlamani ","pranav","pranav");
+
+
+select * from student_alloc where student_id=27;
+
+select * from students where id = 131;
+
+----------------------------------- Rrofessors---
+
+desc time_table;
+create table professors(id int primary key,f_name varchar(20),l_name varchar(20),password varchar(20));
+insert into professors values (124,"Manoor","Hanmanth Prasad","prasad");
+
+----------------------------------- Subjects---
+desc timetabe;
+select * from slots;
+
+desc subjects;
+create table subjects(id int primary key, CourseCode varchar (10) not null ,CourseName varchar (255) not null );
+alter table subjects modify CourseCode varchar(100);
+
+----------------------------------- Student Allocation---
+
+
+
+create table student_alloc(student_id int references students(id),subject_id int references  subjects(id));
+insert into student_alloc values(141,1);
+insert into student_alloc values(141,2);
+insert into student_alloc values(141,3);
+insert into student_alloc values(141,4);
+insert into student_alloc values(141,5);
+insert into student_alloc values(141,6);
+insert into student_alloc values(141,7);
+insert into student_alloc values(141,8);
+
+
+-- second student
+
+select count(*) from student_alloc where student_id=131; 
+insert into student_alloc values(131,2);
+insert into student_alloc values(131,3);
+insert into student_alloc values(131,4);
+insert into student_alloc values(131,5);
+insert into student_alloc values(131,6);
+select * from subjects where id in  (select subject_id from student_alloc);
+----------------------------------- Professoer allocation---
+
+
+create table professor_alloc(professor_id int references professor(id),subject_id int references subjects(id));
+insert into professor_alloc values(124,4);
+
+----------------------------------- Days---
+
+
+create table days(id int primary key,name varchar(20));
+insert into days values (1,'Monday');
+insert into days values (2,'Teusday');
+insert into days values (3,'Wensday');
+insert into days values (4,'Thursday');
+insert into days values (5,'Friday');
+insert into days values (6,'Saterday');
+insert into days  values (7,'Sunday');
+
+select * from days;
+
+----------------------------------- Slots---
+
+
+create table slots(id int primary key, start varchar(20),end varchar(20));
+
+insert into slots values (1,"8:00","8:50");
+insert into slots values (2,"8:51","9:40");
+insert into slots values (3,"10:00","10:50");
+insert into slots values (4,"10:51","11:40");
+insert into slots values  (5,"11:50","12:40");
+insert into slots values  (6,"12:41","13:30");
+insert into slots values  (7,"Lunch","Lunch");
+insert into slots values  (8,"14:00","14:50");
+insert into slots values  (9,"14:51","15:40");
+insert into slots values  (10,"16:00","16:50");
+insert into slots values  (11,"16:51","17:40");
+insert into slots values  (12,"17:50","18:40");
+insert into slots values  (13,"18:41","19:30");
+insert into slots values  (14,"19:31","20:20");
+insert into slots values  (15,"20:21","21:10");
+
+select * from slots;
+
+
+----------------------------------- Time Table---
+create table time_table(day_id int references days(id),slot_id int references slots(id),sub_id int references subjects(id));
+alter table time_table add column time_table_id int primary key;
+alter table time_table drop column time_table_id ;
+
+alter table time_table modify column slot_id int;
+alter table time_table drop primary key;
+alter table time_table add primary key(day_id,slot_id);
+alter table time_table add column is_lab int default 0;
+select * from time_table;
+desc time_table;
+ALTER TABLE time_table
+DROP INDEX slot_id;
+
+select * from time_table where day_id;
+
+ delete  from time_table where slot_id=2;
+desc time_table;
+-- day_id	int	YES		
+-- slot_id	int	YES		
+-- sub_id	int	YES		
+-- time_table_id	int	NO	PRI	
+insert into time_table values (1,1,1,1);
+insert into time_table values (1,2,2,2);
+
+insert into time_table values (1,3,3,3);
+insert into time_table values (1,4,4,4);
+insert into time_table values (1,5,5,5);
+insert into time_table values (1,6,6,6);
+select * from subjects;
+select * from students;	
+
+select * from slots;
+
+insert into time_table values (1,7,4,21,1);
+insert into time_table values (1,8,5,22,1);
+insert into time_table values (1,9,6,23,1);
+insert into time_table values (1,10,1,24,1);
+
+
+-- fri time table
+insert into time_table values (5,1,1,7);
+insert into time_table values (5,2,2,8);
+select * from slots;
+insert into time_table values (5,3,3,9);
+insert into time_table values (5,4,4,10);
+insert into time_table values (5,5,5,11);
+insert into time_table values (5,6,6,12);
+
+-- wed time table
+
+insert into time_table values (2,3,2,17,1);
+insert into time_table values (2,4,4,18,1);
+insert into time_table values (2,5,5,19,1);
+insert into time_table values (2,6,6,20,1);
+
+--
+insert into time_table values (5,3,3,9);
+insert into time_table values (5,4,4,10);
+insert into time_table values (5,5,5,11);
+insert into time_table values (5,6,6,12);
+
+
+
+select * from time_table;
+
+
+
+
+create table hall(id int primary key );
+alter table hall modify column id varchar(30);
+
+insert into hall values ("H001");
+insert into hall values ("H002");
+insert into hall values ("H003");
+insert into hall values ("H004");
+insert into hall values ("H005");
+
+
+
+
+insert into subjects values (1,"19CSE_JAVA","Java Full Stack");
+insert into subjects values (2,"19CSE_SYS_DESIGN","System Design");
+insert into subjects values (3,"18IT_DS_ALGO","Data Structures And Algorithms");
+insert into subjects values (4,"19CSE_DB_DESIGN","Database");
+insert into subjects values (5,"19CSE_Coding","Compitative Programming");
+insert into subjects values (6,"19CSE_CN","Computer Network");
+insert into subjects values (7,"19ITCSE","Discrete Mathematics");
+insert into subjects values (8,"19ITPhy","Physics");
+insert into subjects values (9,"19AID","Data Science");
+insert into subjects values (10,"19CSEFRONT_END","MEAN STACK");
+
+select * from subjects;
+
+
+------------------------- queries----------------
+
+show tables;
+
+desc time_table;
+
+create view  time_table_view as
+select *  from time_table;
+desc slots;
+select d.id , d.name as Day , sl.id, sl.start , sl.end  , sub.id as sub_id, sub.CourseCode ,sub.CourseName,tt.is_Lab,tt.time_table_id  from time_table as tt 
+join days as d on d.id=tt.day_id
+join slots as sl on sl.id=tt.slot_id
+join subjects as sub on sub.id=tt.sub_id
+where sub_id  in (select subject_id from student_alloc where student_id=141) order by d.id, sl.id;
+
+
+select d.id , d.name as Day , sl.id, sl.start , sl.end  , sub.id as sub_id, sub.CourseCode ,sub.CourseName,tt.is_Lab,tt.time_table_id  from time_table as tt 
+join days as d on d.id=tt.day_id join slots as sl on sl.id=tt.slot_id
+join subjects as sub on sub.id=tt.sub_id
+where sub_id  in (select subject_id from student_alloc where student_id= 141)
+order by d.id , sl.id ;
+
+
+desc time_table;
+
+
+
+
+
+
+desc time_table;
+show tables;
+
+
+	select d.id , d.name as Day , sl.id, sl.start , sl.end  , sub.id as sub_id, sub.CourseCode ,sub.CourseName,tt.is_Lab,tt.time_table_id, tt.hall_id from time_table as tt
+	join days as d on d.id=tt.day_id join slots as sl on sl.id=tt.slot_id 
+	join subjects as sub on sub.id=tt.sub_id
+	where sub_id  in (select subject_id from student_alloc where student_id= 141 ) order by d.id , sl.id;
+
+desc subjects;
+desc slots;
+desc time_table;
+desc hall;
+select day_id, sl.id, sl.start, sl.end, tt.hall_id , sub.id  ,sub.CourseCode, sub.CourseName,  tt.is_lab from time_table as tt
+join  subjects as sub on  sub.id=tt.sub_id 
+join slots as sl on sl.id=tt.slot_id 
+where hall_id="  H001 "
+order by day_id,slot_id ;
+
+
+desc days;
+alter table time_table add column hall_id varchar(30) default "H001" references hall(id);
+
+desc subjects;
+desc student_alloc;
+select CourseName from subjects where id in
+( select DISTINCT(subject_id) from student_alloc where student_id =141);
+
+
+select * from subjects order by id;
+
+
+show tables;
+show tables;
+desc professor_alloc;
+delete from student_alloc where student_id=27 and subject_id=4;
+
+alter table professor_alloc add primary key(professor_id,subject_id);
+
+alter table student_alloc add foreign key(student_id) references students(id);
+alter table student_alloc add foreign key(subject_id) references subjects(id);
+
+alter table professor_alloc add foreign key(subject_id) references  subjects(id);
+alter table professor_alloc add foreign key(professor_id) references  professors(id);
+
+
+
